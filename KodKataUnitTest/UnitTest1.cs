@@ -25,11 +25,11 @@ namespace KodKataUnitTest
 
 
         [TestMethod]
+        [DeploymentItem(@"test.txt")]
         public void HasLines()
         {
             FileReader fr = new FileReader(@"test.txt");
-            fr.ReadFile();
-
+            
             bool _hasLines = false;
 
             if (fr.BlablaDictionary.Count > 0)
@@ -42,21 +42,21 @@ namespace KodKataUnitTest
 
 
         [TestMethod]
-        public void VerifyLineCount ()
+        [DeploymentItem(@"test.txt")]
+        public void VerifyLineCount()
         {
             FileReader fr = new FileReader(@"test.txt");
-            fr.ReadFile();
-
+            
             Assert.AreEqual(true, fr.BlablaDictionary.Count == 5);
         }
 
 
         [TestMethod]
+        [DeploymentItem(@"test.txt")]
         public void IsWordExisting()
         {
             FileReader fr = new FileReader(@"test.txt");
-            fr.ReadFile();
-
+            
             var isExisting = fr.IsWordExistingInList("apa");
 
             Assert.AreEqual(true, isExisting);
@@ -64,11 +64,11 @@ namespace KodKataUnitTest
 
 
         [TestMethod]
+        [DeploymentItem(@"swedish.txt")]
         public void ExcludeWordsByLength()
         {
             FileReader fr = new FileReader(@"swedish.txt");
-            fr.ReadFile();
-
+            
             fr.ExcludeWordsByCount();
 
 

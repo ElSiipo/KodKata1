@@ -8,8 +8,7 @@ namespace KodKata1
 {
     public class FileReader
     {
-        private StreamReader _streamReader;
-
+       
         private List<String> _blablaDictionary;
         public List<String> BlablaDictionary
         {
@@ -34,21 +33,25 @@ namespace KodKata1
 
         public FileReader(string filepath)
         {
-            _blablaDictionary = new List<string>();
+            _blablaDictionary = ReadFile(filepath);
             this._filePath = filepath;
         }
 
-        public void ReadFile()
+        public static List<string> ReadFile(string filepath)
         {
-            _streamReader = new StreamReader(_filePath);
+            var list = new List<string>();
             
-            string line;
-
-            while ((line = _streamReader.ReadLine()) != null)
+            using (var _streamReader = new StreamReader(filepath))
             {
-                _blablaDictionary.Add(line);
+                string line;
+                while ((line = _streamReader.ReadLine()) != null)
+                {
+                    list.Add(line);
+                }
+                
             }
 
+            return list;
         }
 
         public bool IsWordExistingInList(string _inputWord)
