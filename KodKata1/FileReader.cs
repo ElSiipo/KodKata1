@@ -43,12 +43,14 @@ namespace KodKata1
             
             using (var _streamReader = new StreamReader(filepath))
             {
-                string line;
-                while ((line = _streamReader.ReadLine()) != null)
+                if (File.Exists(filepath))
                 {
-                    list.Add(line);
+                    string line;
+                    while ((line = _streamReader.ReadLine()) != null)
+                    {
+                        list.Add(line);
+                    }
                 }
-                
             }
 
             return list;
@@ -61,7 +63,7 @@ namespace KodKata1
 
         public void ExcludeWordsByCount()
         {
-            BlablaDictionary = BlablaDictionary.Where(p => p.Length == 4).ToList();
+            BlablaDictionary = BlablaDictionary.Where(p => p.Length == InputWord.Length).ToList();
         }
     }
 }
